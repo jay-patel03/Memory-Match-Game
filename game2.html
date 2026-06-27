@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body{
+    background:#222;
+    color:white;
+    text-align:center;
+    font-family:Arial;
+}
+
+.board{
+    width:330px;
+    margin:20px auto;
+    display:grid;
+    grid-template-columns:repeat(3,100px);
+    gap:10px;
+}
+
+.cell{
+    width:100px;
+    height:100px;
+    background:white;
+    color:black;
+    font-size:40px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+button{
+    padding:10px 20px;
+    font-size:18px;
+}
+</style>
+</head>
+<body>
+<h1>Tic Tac Toe</h1>
+
+<h3 id="status">Player X Turn</h3>
+
+<div class="board" id="board">
+    <div class="cell" data-index="0"></div>
+    <div class="cell" data-index="1"></div>
+    <div class="cell" data-index="2"></div>
+    <div class="cell" data-index="3"></div>
+    <div class="cell" data-index="4"></div>
+    <div class="cell" data-index="5"></div>
+    <div class="cell" data-index="6"></div>
+    <div class="cell" data-index="7"></div>
+    <div class="cell" data-index="8"></div>
+</div>
+
+<button onclick="restartGame()">Restart</button>
+
+<!-- Winner Modal -->
+<div class="modal fade" id="winnerModal">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content">
+
+<div class="modal-header">
+<h4 class="modal-title">Game Over</h4>
+</div>
+
+<div class="modal-body">
+<h2 id="winnerText"></h2>
+</div>
+
+<div class="modal-footer">
+<button class="btn btn-primary" onclick="location.reload()">
+Play Again
+</button>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+    const cells=document.querySelectorAll(".cell");
+
+let board=["","","","","","","","",""];
+
+let currentPlayer="X";
+
+let gameRunning=true;
+
+const winPattern=[
+[0,1,2],
+[3,4,5],
+[6,7,8],
+[0,3,6],
+[1,4,7],
+[2,5,8],
+[0,4,8],
+[2,4,6]
+];
+
+cells.forEach(cell=>{
+cell.addEventListener("click",playGame);
+});
+
+function playGame(){
+
+let index=this.dataset.index;
+
+if(board[index]!="" || !gameRunning)
+return;
+
+board[index]=currentPlayer;
+
+this.innerHTML=currentPlayer;
+
+checkWinner();
+
+}
+
+function checkWinner(){
+
+let winner=false;
+
+for(let pattern of winPattern){
+
+let a=board[pattern[0]];
+let b=board[pattern[1]];
+let c=board[pattern[2]];
+
+if(a=="" || b=="" || c=="")
+continue;
+
+if(a==b && b==c){
+
+winner=true;
+
+gameRunning=false;
+
+document.getElementById("winnerText").innerHTML=
+"🎉 Player "+currentPlayer+" Wins!";
+
+let modal=new bootstrap.Modal(document.getElementById("winnerModal"));
+modal.show();
+
+break;
+
+}
+
+}
+
+if(winner)
+return;
+
+if(!board.includes("")){
+
+gameRunning=false;
+
+document.getElementById("winnerText").innerHTML=
+"🤝 Match Draw!";
+
+let modal=new bootstrap.Modal(document.getElementById("winnerModal"));
+modal.show();
+
+return;
+
+}
+
+currentPlayer=currentPlayer=="X"?"O":"X";
+
+document.getElementById("status").innerHTML=
+"Player "+currentPlayer+" Turn";
+
+}
+
+function restartGame(){
+
+board=["","","","","","","","",""];
+
+currentPlayer="X";
+
+gameRunning=true;
+
+document.getElementById("status").innerHTML="Player X Turn";
+
+cells.forEach(cell=>{
+cell.innerHTML="";
+});
+
+}
+</script>
+</body>
+</html>
