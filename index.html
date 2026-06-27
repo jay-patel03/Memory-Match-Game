@@ -5,80 +5,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .container{
-            border: 1px solid black;
-            height: 500px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-        }
-        .div1{
-            height: 140px;
-            width: 10%;
-        }
-        .img1{
-            border-radius: 5px;
-            background-image: url("https://store-images.s-microsoft.com/image/apps.54588.14090654178473619.aa2706f7-9244-4d37-b59f-3f87f7589476.6a5a6db1-70ba-4b57-a879-7f9264cd3a40?h=1280");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: fixed;
-            height: 100px;
-            width: 100%;
-        }
-        a{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 5px;
-            cursor: pointer;
-            height: 40px;
-            background-color: #28a745;
-        }
-        a:hover{
-            
-            color: white;
-        }
-        .div2{
-            height: 140px;
-            width: 10%;
-        }
-        .img2{
-            border-radius: 5px;
-            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRliZUVmwVdbPy7_nRG1659CNEIexSo4_SFDfVjH5-SDA&s=10");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: fixed;
-            height: 100px;
-            width: 100%;
-        }
-        .div3{
-            height: 140px;
-            width: 10%;
-        }
-        .img3{
-            border-radius: 5px;
-            background-image: url("https://play-lh.googleusercontent.com/4Tj6_vTYdMhAKJroeUD6JokvZDBzZzOtNKrsMulsiOZeMW9wiQAU_opXLejiz2g6ylM8XSPCOPzgmOAW300W=w526-h296-rw");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: fixed;
-            height: 100px;
-            width: 100%;
-        }
-        .div4{
-            height: 140px;
-            width: 10%;
-        }
-        .img4{
-            border-radius: 5px;
-            background-image: url("");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: fixed;
-            height: 100px;
-            width: 100%;
-        }
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 20px;
+}
+
+.div1,
+.div2,
+.div3,
+.div4{
+    width: 220px;
+}
+
+.img1,
+.img2,
+.img3,
+.img4{
+    width: 100%;
+    height: 150px;
+    border-radius: 8px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.img1{
+    background-image: url("https://store-images.s-microsoft.com/image/apps.54588.14090654178473619.aa2706f7-9244-4d37-b59f-3f87f7589476.6a5a6db1-70ba-4b57-a879-7f9264cd3a40?h=1280");
+}
+
+.img2{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRliZUVmwVdbPy7_nRG1659CNEIexSo4_SFDfVjH5-SDA&s=10");
+}
+
+.img3{
+    background-image: url("https://play-lh.googleusercontent.com/4Tj6_vTYdMhAKJroeUD6JokvZDBzZzOtNKrsMulsiOZeMW9wiQAU_opXLejiz2g6ylM8XSPCOPzgmOAW300W=w526-h296-rw");
+}
+
+.img4{
+    background-image: url("");
+}
+
+a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    margin-top: 10px;
+    background: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+a:hover{
+    background: #218838;
+}
+
+/* Tablet */
+@media (max-width:768px){
+
+    .container{
+        gap:20px;
+    }
+
+    .div1,
+    .div2,
+    .div3,
+    .div4{
+        width:45%;
+    }
+
+    .img1,
+    .img2,
+    .img3,
+    .img4{
+        height:140px;
+    }
+}
+
+@media (max-width:480px){
+
+    .container{
+        flex-direction:column;
+        padding:15px;
+    }
+
+    .div1,
+    .div2,
+    .div3,
+    .div4{
+        width:100%;
+        max-width:320px;
+    }
+
+    .img1,
+    .img2,
+    .img3,
+    .img4{
+        height:180px;
+    }
+
+    a{
+        height:50px;
+        font-size:16px;
+    }
+}
     </style>
 </head>
 <body>
